@@ -1,0 +1,52 @@
+org: enzogomez
+service: api-estudiantes
+
+provider:
+  name: aws
+  runtime: python3.12
+  iam:
+    role: arn:aws:iam::353553552499:role/LabRole
+
+functions:
+  listarProgramas:
+    handler: listarEstudiante.lambda_handler
+    events:
+      - http:
+          path: /programas/listar
+          method: post
+          cors: true
+          integration: lambda
+
+  buscarEstudiante:
+    handler: buscarEstudiante.lambda_handler
+    events:
+      - http:
+          path: /estudiantes/buscar
+          method: post
+          cors: true
+          integration: lambda
+
+  modificarEstudiante:
+    handler: modificarEstudiante.lambda_handler
+    events:
+      - http:
+          path: /estudiantes/modificar
+          method: put
+          cors: true
+          integration: lambda
+  eliminarEstudiante:
+    handler: eliminarEstudiante.lambda_handler
+    events:
+      - http:
+          path: /estudiantes/eliminar
+          method: delete
+          cors: true
+          integration: lambda
+  crearEstudianteCompleto:
+    handler: crearEstudianteCompleto.lambda_handler
+    events:
+      - http:
+          path: /estudiantes/crear
+          method: post
+          cors: true
+          integration: lambda
